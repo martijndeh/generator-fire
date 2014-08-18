@@ -1,0 +1,10 @@
+{
+	"name": "<%= name %>",
+	"dependencies": {
+		"fire": "*",
+		"q": "*"
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5"
+	}
+}
