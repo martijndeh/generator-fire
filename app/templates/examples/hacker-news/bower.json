@@ -1,0 +1,8 @@
+{
+  "name": "hacker-news",
+  "dependencies": {
+    "angular": "*",
+    "angular-route": "*",
+    "bootstrap": "~3.2.0"
+  }
+}

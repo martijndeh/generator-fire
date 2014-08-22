@@ -18,3 +18,6 @@ notes.md
 coverage.html
 .DS_Store
 bower_components
+_api
+_assets
+_migrations

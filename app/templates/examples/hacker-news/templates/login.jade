@@ -1,0 +1,35 @@
+nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
+    div.container-fluid
+        div.col-md-8.col-md-offset-2
+            ul.nav.navbar-nav
+                li.active
+                    a(href="#") Hacker News
+                li
+                    a(href="#") Submit
+
+div.container-fluid(ng-controller="LoginController")
+    div.row
+        div.col-md-8.col-md-offset-2
+            form(ng-submit="loginUser(user)" role="form")
+                h1 Login
+
+                div.form-group
+                    label(for="login--username") Username
+                    input.form-control(type="text" ng-model="user.name" id="login--username")
+                div.form-group
+                    label(for="login--password") Password
+                    input.form-control(type="password" ng-model="user.password" id="login--password")
+
+                button.btn.btn-default(type="submit") Login
+
+            form(ng-submit="createUser(newUser)")
+                h1 Create account
+
+                div.form-group
+                    label(for="create--username") Username
+                    input.form-control(type="text" ng-model="newUser.name" id="create--username")
+                div.form-group
+                    label(for="create--password") Password
+                    input.form-control(type="password" ng-model="newUser.password" id="create--password")
+
+                button.btn.btn-default(type="submit") Create
