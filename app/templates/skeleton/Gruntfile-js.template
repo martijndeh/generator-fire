@@ -109,6 +109,12 @@ module.exports = function(grunt) {
             delete require.cache[moduleName];
         }
 
+        Object.keys(require.cache).forEach(function(requireName) {
+            if(requireName.indexOf(basePath) === 0) {
+                delete require.cache[requireName];
+            }
+        });
+
         var fire = require('fire');
         fire.disabled = true;
         fire.appsMap = {};
@@ -126,13 +132,14 @@ module.exports = function(grunt) {
                         addMigration: function(fileName, stream) {
                             var writeStream = fs.createWriteStream(path.join(basePath, '_migrations', fileName));
                             stream.pipe(writeStream);
+
+                            writeStream.once('finish', function() {
+                                done();
+                            });
                         }
                     };
 
-                    return generate.createMigrations()
-                        .then(function() {
-                            done();
-                        });
+                    return generate.createMigrations();
                 })
                 .done();
         }
