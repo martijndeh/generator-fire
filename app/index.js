@@ -5,11 +5,6 @@ module.exports = yeoman.generators.Base.extend({
 	constructor: function() {
 		yeoman.generators.Base.apply(this, arguments);
 
-		this.option('example', {
-			desc: 'Creates one of the sample apps.',
-			type: String
-		});
-
 		this.argument('name', {
 			desc: 'The name of the app to create.',
 			optional: true,
