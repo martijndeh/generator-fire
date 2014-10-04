@@ -111,4 +111,4 @@ LoginController.prototype.viewLogin = function() {
 	return this.template('login.jade');
 };
 
-app.run();
+app.start();
