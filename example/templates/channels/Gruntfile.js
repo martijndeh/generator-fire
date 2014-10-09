@@ -164,6 +164,7 @@ module.exports = function(grunt) {
 
                     app.models.forEach(function(model) {
                         result = result.then(function() {
+                            var modelName = model.getName();
                             var writeStream = fs.createWriteStream(path.join(basePath, '_api', model.getFileName() + '.js'));
                             return app.API.generateModelController(model, writeStream);
                         });

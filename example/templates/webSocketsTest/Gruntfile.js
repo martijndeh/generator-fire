@@ -141,6 +141,12 @@ module.exports = function(grunt) {
 
                     return generate.createMigrations();
                 })
+                .catch(function(error) {
+                    console.log(error.message);
+                    console.log(error.stack);
+
+                    throw error;
+                })
                 .done();
         }
         else if(this.target == 'api') {
@@ -174,6 +180,12 @@ module.exports = function(grunt) {
                 .then(function() {
                     done();
                 })
+                .catch(function(error) {
+                    console.log(error.message);
+                    console.log(error.stack);
+
+                    throw error;
+                })
                 .done();
         }
         else if(this.target == 'scripts') {
@@ -190,9 +202,21 @@ module.exports = function(grunt) {
                                 .then(function() {
                                     done();
                                 })
+                                .catch(function(error) {
+                                    console.log(error.message);
+                                    console.log(error.stack);
+
+                                    throw error;
+                                })
                                 .done();
                         });
                     });
+                })
+                .catch(function(error) {
+                    console.log(error.message);
+                    console.log(error.stack);
+
+                    throw error;
                 })
                 .done();
         }

@@ -1,0 +1,7 @@
+{
+    "name": "webSocketsTest",
+    "dependencies": {
+        "angular": "*",
+        "angular-route": "*"
+    }
+}

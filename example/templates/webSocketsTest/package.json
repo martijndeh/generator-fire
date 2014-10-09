@@ -1,0 +1,10 @@
+{
+	"name": "webSocketsTest",
+	"dependencies": {
+		"fire": "*",
+		"q": "*"
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5"
+	}
+}

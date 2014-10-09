@@ -159,7 +159,7 @@ module.exports = function(grunt) {
                         result = result.then(function() {
                             var modelName = model.getName();
                             var writeStream = fs.createWriteStream(path.join(basePath, '_api', model.getFileName() + '.js'));
-                            return app.aPI.generateModelController(model, writeStream);
+                            return app.API.generateModelController(model, writeStream);
                         });
                     });
 
