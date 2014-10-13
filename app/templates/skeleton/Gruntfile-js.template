@@ -23,6 +23,10 @@ module.exports = function(grunt) {
         },
         run: {
 
+        },
+        watch: {
+            files: ['**/*', '!**/node_modules/**'],
+            tasks: ['build:migrations', 'build:api', 'build:scripts']
         }
     });
 
@@ -197,4 +201,6 @@ module.exports = function(grunt) {
                 .done();
         }
     });
+
+    grunt.loadNpmTasks('grunt-contrib-watch');
 };
