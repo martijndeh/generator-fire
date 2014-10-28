@@ -169,10 +169,12 @@ module.exports = function(grunt) {
                     var result = Q.when(true);
 
                     app.models.forEach(function(model) {
-                        result = result.then(function() {
-                            var writeStream = fs.createWriteStream(path.join(basePath, '_api', model.getFileName() + '.js'));
-                            return app.API.generateModelController(model, writeStream);
-                        });
+                        if(!model.disableAutomaticModelController) {
+                            result = result.then(function() {
+                                var writeStream = fs.createWriteStream(path.join(basePath, '_api', model.getFileName() + '.js'));
+                                return app.API.generateModelController(model, writeStream);
+                            });
+                        }
                     });
 
                     return result;
