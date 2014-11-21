@@ -29,13 +29,13 @@ function Article() {
 }
 app.model(Article);
 
-function NewsController(fire, $scope) {
-	fire.models.Article.find({}, {orderBy:{position:1}})
+function NewsController(ArticleModel, UserModel, $scope) {
+	ArticleModel.find({}, {orderBy:{position:1}})
 		.then(function(articles) {
 			$scope.articles = articles;
 		});
 
-	fire.models.User.getMe()
+	UserModel.getMe()
 		.then(function(user) {
 			$scope.user = user;
 		});
@@ -50,8 +50,11 @@ NewsController.prototype.view = function() {
 	return this.template('list.jade');
 };
 
-function ArticleController(fire, $scope, $routeParams) {
-	$scope.article = fire.unwrap(fire.models.Article.findOne({id: $routeParams.id}), {});
+function ArticleController(ArticleModel, $scope, $routeParams) {
+	ArticleModel.findOne({id: $routeParams.id})
+		.then(function(article) {
+			$scope.article = article;
+		});
 }
 app.controller(ArticleController);
 
@@ -59,8 +62,8 @@ ArticleController.prototype.viewArticle = function($id) {
 	return this.template('article.jade');
 };
 
-function SubmitController(fire, $scope, $location) {
-	fire.models.User.getMe()
+function SubmitController(UserModel, ArticleModel, $scope, $location) {
+	UserModel.getMe()
 		.then(function(user) {
 			$scope.user = user;
 		})
@@ -69,7 +72,7 @@ function SubmitController(fire, $scope, $location) {
 		});
 
 	$scope.submitArticle = function(article) {
-		fire.models.Article.create(article)
+		ArticleModel.create(article)
 			.then(function() {
 				$location.path('/');
 			})
@@ -84,9 +87,9 @@ SubmitController.prototype.viewSubmit = function() {
 	return this.template('submit.jade');
 };
 
-function LoginController(fire, $scope, $location) {
+function LoginController(UserModel, $scope, $location) {
 	$scope.loginUser = function(user) {
-		fire.models.User.authorize(user)
+		UserModel.authorize(user)
 			.then(function(user) {
 				$location.path('/');
 			})
@@ -96,7 +99,7 @@ function LoginController(fire, $scope, $location) {
 	};
 
 	$scope.createUser = function(user) {
-		fire.models.User.create(user)
+		UserModel.create(user)
 			.then(function() {
 				$location.path('/');
 			})
