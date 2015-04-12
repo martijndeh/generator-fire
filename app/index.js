@@ -13,6 +13,8 @@ module.exports = yeoman.generators.Base.extend({
 	},
 
 	getAppName: function() {
+		this.name = this.options.name;
+		
 		if(!this.name) {
 			var done = this.async();
 
@@ -53,6 +55,8 @@ module.exports = yeoman.generators.Base.extend({
 		this.template('skeleton/env.template', '.env', {sessionKey: crypto.randomBytes(127).toString('base64'), databaseUrl: this.databaseUrl});
 		this.template('skeleton/package-json.template', 'package.json', {name: this.name});
 		this.template('skeleton/Gruntfile-js.template', 'Gruntfile.js', {});
+		this.template('skeleton/view-jade.template', 'templates/view.jade', {});
+		this.template('skeleton/start-jade.template', 'templates/start.jade', {});
 	},
 
 	installEverything: function() {

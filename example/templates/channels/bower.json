@@ -1,7 +1,0 @@
-{
-    "name": "channels",
-    "dependencies": {
-        "angular": "*",
-        "angular-route": "*"
-    }
-}

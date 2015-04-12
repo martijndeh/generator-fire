@@ -1,5 +1,6 @@
 var yeoman = require('yeoman-generator');
 var pg = require('pg');
+pg.defaults.poolIdleTimeout = 500;
 
 module.exports = yeoman.generators.Base.extend({
 	constructor: function() {
@@ -65,6 +66,8 @@ module.exports = yeoman.generators.Base.extend({
 		this.host = this.host;
 		this.port = this.port;
 		this.template = this.template;
+		
+		this.database = this.options.database;
 
 		this.databaseUrl = 'postgres://' + this.user + (this.password && this.password.length ? (':' + this.password) : '') + '@' + this.host + ':' + this.port + '/' + this.template;
 
